@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UMUCYO SCHOOL</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo_umucyo.png"/>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Dark Overlay Loader */
+    #overlayLoader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 999999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .loader {
+      width: 70px;
+      height: 70px;
+      border: 6px solid #fff;
+      border-top: 6px solid #ff5bd6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Navbar Active Link */
+    .navbar-nav .nav-link.active {
+      font-weight: 600;
+      color: #ff5bd6 !important;
+    }
+
+    /* Card Hover Effect */
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Gallery hover */
+    .gallery-item {
+      cursor: pointer;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .gallery-item .overlay {
+      background: rgba(0,0,0,0.6);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Overlay Loader -->
+<div id="overlayLoader">
+  <div class="loader"></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="logo_umucyo.png" alt="UMUCYO SCHOOL Logo" height="60" class="me-2">
+      <span>UMUCYO SCHOOL</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="javascript:void(0)" onclick="goHome()">
+            <i class="bi bi-house-door me-1"></i> Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="#about">
+            <i class="bi bi-info-circle me-1"></i> About
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="#classes">
+            <i class="bi bi-journal-bookmark me-1"></i> Classes
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="#teachers">
+            <i class="bi bi-person-badge me-1"></i> Leaders
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="#gallery">
+            <i class="bi bi-images me-1"></i> Gallery
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="#contact">
+            <i class="bi bi-telephone me-1"></i> Contact
+          </a>
+        </li>
+
+        <!-- Protected Developer Link -->
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="login.html" onclick="openDeveloper()">
+            <i class="bi bi-person-lines-fill me-1"></i> About Developer
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Carousel -->
+<section class="hero mt-5 pt-5">
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="image_5.jpg" class="d-block w-100" alt="School Kids">
+      </div>
+      <div class="carousel-item">
+        <img src="image_3.jpg" class="d-block w-100" alt="Classroom">
+      </div>
+      <div class="carousel-item">
+        <img src="image_4.jpg" class="d-block w-100" alt="Playground">
+      </div>
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content text-center">
+    <h1 class="animate__animated animate__fadeInDown">Welcome to UMUCYO SCHOOL</h1>
+    <p class="animate__animated animate__fadeInUp">Nursery & Primary Education with Excellence</p>
+    <a href="#contact" class="btn btn-animated mt-4 animate__animated animate__pulse animate__infinite">Enroll Now</a>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title fw-bold animate__animated animate__fadeInDown">About Us</h2>
+      <p class="lead text-muted mx-auto animate__animated animate__fadeInUp" style="max-width:700px;">
+        UMUCYO SCHOOL is dedicated to providing high-quality education to children, nurturing their skills, creativity, and values from an early age. Our programs emphasize both academic excellence and character development.
+      </p>
+    </div>
+    <div class="row g-4">
+      <!-- Teachers Card -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 animate__animated animate__fadeInLeft">
+          <img src="image_2.jpg" class="card-img-top" alt="Teachers" style="height:220px; object-fit:cover; border-radius: 15px 15px 0 0;">
+          <div class="card-body text-center">
+            <i class="fas fa-chalkboard-teacher fa-2x text-primary mb-2"></i>
+            <h5 class="card-title fw-bold">Qualified Teachers</h5>
+            <p class="card-text text-muted">
+              Our experienced teachers guide every child with care, ensuring a strong foundation for lifelong learning.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Facilities Card -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 animate__animated animate__fadeInUp">
+          <img src="study.png" class="card-img-top" alt="Library" style="height:220px; object-fit:cover; border-radius: 15px 15px 0 0;">
+          <div class="card-body text-center">
+            <i class="fas fa-school fa-2x text-success mb-2"></i>
+            <h5 class="card-title fw-bold">Modern Facilities</h5>
+            <p class="card-text text-muted">
+              From well-equipped classrooms to a rich library, we provide an environment conducive to learning and creativity.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Environment Card -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 animate__animated animate__fadeInRight">
+          <img src="play.jpg" class="card-img-top" alt="Playground" style="height:220px; object-fit:cover; border-radius: 15px 15px 0 0;">
+          <div class="card-body text-center">
+            <i class="fas fa-child fa-2x text-warning mb-2"></i>
+            <h5 class="card-title fw-bold">Safe & Fun Environment</h5>
+            <p class="card-text text-muted">
+              Children enjoy a safe and stimulating environment that encourages play, exploration, and friendship.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Classes Section -->
+<section id="classes" class="section py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title fw-bold animate__animated animate__fadeInDown">Our Classes</h2>
+      <p class="lead text-muted mx-auto animate__animated animate__fadeInUp" style="max-width:700px;">
+        At UMUCYO SCHOOL, we offer a variety of classes designed to nurture your child's academic and creative skills.
+      </p>
+    </div>
+    <div class="row g-4">
+      <!-- Nursery Class -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 animate__animated animate__fadeInLeft">
+          <img src="nursary_class.jpg" class="card-img-top" alt="Nursery Class" style="height:220px; object-fit:cover; border-radius: 15px 15px 0 0;">
+          <div class="card-body text-center">
+            <i class="fas fa-baby fa-2x text-primary mb-2"></i>
+            <h5 class="card-title fw-bold">Nursery Class</h5>
+            <p class="card-text text-muted">Play-based learning, social skills, and basic literacy & numeracy.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary Class -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 animate__animated animate__fadeInUp">
+          <img src="primary_class.jpg" class="card-img-top" alt="Primary Class" style="height:220px; object-fit:cover; border-radius: 15px 15px 0 0;">
+          <div class="card-body text-center">
+            <i class="fas fa-book-open fa-2x text-success mb-2"></i>
+            <h5 class="card-title fw-bold">Primary Class</h5>
+            <p class="card-text text-muted">Comprehensive curriculum covering academics and creative arts.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Special Activities -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 animate__animated animate__fadeInRight">
+          <img src="culture.PNG" class="card-img-top" alt="Special Activities" style="height:220px; object-fit:cover; border-radius: 15px 15px 0 0;">
+          <div class="card-body text-center">
+            <i class="fas fa-paint-brush fa-2x text-warning mb-2"></i>
+            <h5 class="card-title fw-bold">Special Activities</h5>
+            <p class="card-text text-muted">Music, sports, arts, and technology clubs help children explore talents and creativity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teachers Section -->
+<section id="teachers" class="section py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Our Leaders</h2>
+    <div class="row g-4">
+      <!-- Example Teacher Card -->
+      <div class="col-md-3 animate__animated animate__fadeInLeft">
+        <div class="card text-center border-0 shadow-sm h-100">
+          <img src="nepon.PNG" class="card-img-top rounded-circle mx-auto mt-3" style="width:150px; height:150px; object-fit:cover;" alt="HM. NGIRINSHUTI J.Nepon">
+          <div class="card-body">
+            <h5 class="card-title">HM. NGIRINSHUTI J.Nepon</h5>
+            <p class="card-text text-muted">Responsible for overall management, well-being of students and staff, and administrative duties.</p>
+            <div class="social-icons mt-2">
+              <a href="#" class="text-primary me-2"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-info me-2"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-danger"><i class="bi bi-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="col-md-3 animate__animated animate__fadeInUp">
+        <div class="card text-center border-0 shadow-sm h-100">
+          <img src="leader_1.PNG" class="card-img-top rounded-circle mx-auto mt-3" style="width:150px; height:150px; object-fit:cover;" alt="Mr. John Smith">
+          <div class="card-body">
+            <h5 class="card-title">HMs. Viollete</h5>
+            <p class="card-text text-muted">Our Head Teachers in Umucyo School responsible for the overall management of a school, including setting the vision, managing finances and resources, overseeing the curriculum, and ensuring the safety of staff and students</p>
+            <div class="social-icons mt-2">
+              <a href="#" class="text-primary me-2"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-info me-2"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-danger"><i class="bi bi-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 animate__animated animate__fadeInUp animate__delay-1s">
+        <div class="card text-center border-0 shadow-sm h-100">
+          <img src="unknown.webp" class="card-img-top rounded-circle mx-auto mt-3" style="width:150px; height:150px; object-fit:cover;" alt="Ms. Emily Green">
+          <div class="card-body">
+            <h5 class="card-title">DoS. Unknown</h5>
+            <p class="card-text text-muted">A Director of Studies (DoS) is a senior academic administrator responsible for overseeing a school's or college's academic life, including curriculum, teaching standards, and student welfare</p>
+            <div class="social-icons mt-2">
+              <a href="#" class="text-primary me-2"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-info me-2"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-danger"><i class="bi bi-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 animate__animated animate__fadeInRight">
+        <div class="card text-center border-0 shadow-sm h-100">
+          <img src="unknown.webp" class="card-img-top rounded-circle mx-auto mt-3" style="width:150px; height:150px; object-fit:cover;" alt="Mr. David Brown">
+          <div class="card-body">
+            <h5 class="card-title">Secretary. Unknown</h5>
+            <p class="card-text text-muted">A school secretary provides essential administrative support, acting as the first point of contact for students, parents, and visitors</p>
+            <div class="social-icons mt-2">
+              <a href="#" class="text-primary me-2"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-info me-2"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-danger"><i class="bi bi-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Add Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+<!-- Gallery Section -->
+<section id="gallery" class="section bg-light py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Gallery</h2>
+    <div class="row g-4">
+
+      <!-- Gallery Item 1 -->
+      <div class="col-md-4 animate__animated animate__zoomIn">
+        <div class="gallery-item position-relative overflow-hidden rounded shadow-sm">
+          <img src="image_1.jpg" class="img-fluid" alt="Children enjoying classroom activities">
+          <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-center">
+            <p class="text-white m-0 px-3">Children enjoying classroom activities</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Item 2 -->
+      <div class="col-md-4 animate__animated animate__zoomIn animate__delay-1s">
+        <div class="gallery-item position-relative overflow-hidden rounded shadow-sm">
+          <img src="image_2.jpg" class="img-fluid" alt="Students reading in the library">
+          <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-center">
+            <p class="text-white m-0 px-3">Students reading in the library</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Item 3 -->
+      <div class="col-md-4 animate__animated animate__zoomIn animate__delay-2s">
+        <div class="gallery-item position-relative overflow-hidden rounded shadow-sm">
+          <img src="image_3.jpg" class="img-fluid" alt="Art and creative activities">
+          <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-center">
+            <p class="text-white m-0 px-3">Art and creative activities</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Item 4 -->
+      <div class="col-md-4 animate__animated animate__zoomIn animate__delay-3s">
+        <div class="gallery-item position-relative overflow-hidden rounded shadow-sm">
+          <img src="image_4.jpg" class="img-fluid" alt="Science lab experiments">
+          <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-center">
+            <p class="text-white m-0 px-3">Science lab experiments</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Item 5 -->
+      <div class="col-md-4 animate__animated animate__zoomIn animate__delay-4s">
+        <div class="gallery-item position-relative overflow-hidden rounded shadow-sm">
+          <img src="image_5.jpg" class="img-fluid" alt="Outdoor sports and activities">
+          <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-center">
+            <p class="text-white m-0 px-3">Condidential Childrens and Leaders</p>
+          </div>
+        </div>
+      </div>
+      <!-- Gallery Item 6 -->
+      <div class="col-md-4 animate__animated animate__zoomIn animate__delay-4s">
+        <div class="gallery-item position-relative overflow-hidden rounded shadow-sm">
+          <img src="play.jpg" class="img-fluid" alt="Outdoor sports and activities">
+          <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-center">
+            <p class="text-white m-0 px-3">Outdoor sports and activities</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Contact Us</h2>
+    <div class="row">
+      <div class="col-md-6 animate__animated animate__fadeInLeft">
+        <p><i class="fas fa-map-marker-alt me-2"></i>Address: 33M7+2Q8, KG 667 Street, Kigali</p>
+        <p><i class="fas fa-phone me-2"></i>Phone: +250 783 728 359</p>
+        <p><i class="fas fa-envelope me-2"></i>Email: umucyoschool@gmail.com</p>
+        <p><i class="fab fa-youtube me-2"></i>YouTube: <a href="https://www.youtube.com/@umucyoschooltv8286" target="_blank">umucyoschooltv</a></p>
+        <p><i class="fab fa-facebook me-2"></i>Facebook: <a href="https://web.facebook.com/p/Umucyo-School-100050038844197/?_rdc=1&_rdr#" target="_blank">UMUCYO School</a></p>
+      </div>
+      <div class="col-md-6 animate__animated animate__fadeInRight">
+        <form>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Your Name" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Your Email" required>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" rows="4" placeholder="Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-animated w-100">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="text-center py-3 bg-dark text-white">
+  <p>&copy; 2025 UMUCYO SCHOOL. All Rights Reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Smooth scroll & Active link -->
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if(target){
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Active link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+  window.addEventListener('scroll', () => {
+    let scrollY = window.pageYOffset;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 90;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+
+      if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight){
+        navLinks.forEach(link => link.classList.remove('active'));
+        navLinks.forEach(link => {
+          if(link.getAttribute('href').includes(sectionId)){
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  });
+
+  // Home redirect
+  function goHome() {
+    window.location.href = "index.html";
+  }
+
+  // Protected Developer Page
+  function openDeveloper() {
+    const loggedIn = sessionStorage.getItem("loggedIn");
+    document.getElementById("overlayLoader").style.display = "flex";
+
+    setTimeout(() => {
+      if(loggedIn === "true"){
+        window.location.href = "about_developer.html";
+      } else {
+        window.location.href = "login.html";
+      }
+    }, 1200);
+  }
+</script>
+</body>
+</html>

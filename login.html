@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - About Developer</title>
+  <link rel="icon" type="image/png" href="logo_umucyo.png"/>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff5bd6, #01479c, rgb(81,122,255));
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(-50deg, #ff5bd6, #01479c, rgb(81,122,255));
+      position: relative;
+      z-index: 5;
+    }
+    .navbar-brand, .nav-link {
+      color: white !important;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: rgb(81,122,255) !important;
+    }
+
+    /* Login box */
+    .login-container {
+      max-width: 400px;
+      margin: 140px auto;
+      padding: 30px;
+      background-color: rgba(0,0,0,0.6);
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Button */
+    .btn-animated {
+      background: linear-gradient(90deg, #ff5bd6, rgb(81,122,255));
+      color: white;
+      font-weight: bold;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      transition: 0.5s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+    .btn-animated:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    }
+
+    footer {
+      margin-top: 50px;
+      background: rgba(0,0,0,0.4);
+      padding: 15px 0;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Loading Spinner */
+    .spinner {
+      display: none;
+      margin: 10px auto 0;
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Shake animation for wrong login */
+    .shake { animation: shakeEffect 0.4s ease; }
+    @keyframes shakeEffect {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-10px); }
+      40% { transform: translateX(10px); }
+      60% { transform: translateX(-10px); }
+      80% { transform: translateX(10px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Overlay Loader */
+    #overlayLoader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 999999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    #overlayLoader .loader {
+      width: 70px;
+      height: 70px;
+      border: 6px solid #fff;
+      border-top: 6px solid #ff5bd6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Overlay Loader -->
+<div id="overlayLoader">
+  <div class="loader"></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="logo_umucyo.png" alt="Logo" height="55" class="me-2">
+      <span>UMUCYO SCHOOL</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="index.html"><i class="bi bi-house-door me-1"></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="index.html#about"><i class="bi bi-info-circle me-1"></i>About</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="index.html#classes"><i class="bi bi-journal-bookmark me-1"></i>Classes</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="index.html#teachers"><i class="bi bi-person-badge me-1"></i>Leaders</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="index.html#gallery"><i class="bi bi-images me-1"></i>Gallery</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="index.html#contact"><i class="bi bi-telephone me-1"></i>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Login Box -->
+<div class="login-container animate__animated animate__fadeIn" id="loginBox">
+  <h2 class="text-center mb-4">Login to About Developer</h2>
+  <form onsubmit="return checkLogin()">
+    <div class="mb-3">
+      <input type="text" id="username" class="form-control" placeholder="Username" required>
+    </div>
+    <div class="mb-3">
+      <input type="password" id="password" class="form-control" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-animated w-100" id="loginBtn">Login</button>
+    <div class="spinner" id="loadingSpinner"></div>
+  </form>
+</div>
+
+<footer>
+  <p>&copy; 2025 UMUCYO SCHOOL — All Rights Reserved</p>
+</footer>
+
+<script>
+function checkLogin() {
+  const loginBox = document.getElementById("loginBox");
+  const spinner = document.getElementById("loadingSpinner");
+  const loginBtn = document.getElementById("loginBtn");
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  spinner.style.display = "block";
+  loginBtn.disabled = true;
+  loginBtn.innerHTML = "Checking...";
+
+  setTimeout(() => {
+    if(username === "Umucyo School" && password === "umucyo@123") {
+      sessionStorage.setItem("loggedIn", "true");
+      document.getElementById("overlayLoader").style.display = "flex";
+      setTimeout(() => { window.location.href = "about_developer.html"; }, 1200);
+    } else {
+      loginBox.classList.add("shake");
+      setTimeout(() => { loginBox.classList.remove("shake"); }, 500);
+      alert("Incorrect username or password!");
+      spinner.style.display = "none";
+      loginBtn.disabled = false;
+      loginBtn.innerHTML = "Login";
+    }
+  }, 1500);
+
+  return false;
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('.nav-link[href^="index.html"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const hash = this.hash;
+    if(hash) {
+      e.preventDefault();
+      const target = document.querySelector(hash);
+      if(target){ target.scrollIntoView({ behavior: 'smooth' }); }
+    }
+  });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
